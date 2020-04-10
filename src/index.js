@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './screen/index.tsx';
 import * as serviceWorker from './serviceWorker';
+import { MainProvider, MainState, MainAction } from './context'
+
+function Index () {
+  const [store, dispatch] = useReducer(MainAction, MainState)
+
+  return (
+    <MainProvider value={{ store, dispatch }}>
+      <App />
+    </MainProvider>
+  )
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Index />
   </React.StrictMode>,
   document.getElementById('root')
 );
